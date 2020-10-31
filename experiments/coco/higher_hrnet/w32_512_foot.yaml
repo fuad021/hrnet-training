@@ -98,6 +98,7 @@ MODEL:
   NAME: pose_higher_hrnet
   NUM_JOINTS: 23
   PRETRAINED: 'models/pytorch/imagenet/hrnet_w32-36af842e.pth'
+  PRETRAINED_MODEL: hrnet_imagenet
   TAG_PER_JOINT: True
 TEST:
   FLIP_TEST: False

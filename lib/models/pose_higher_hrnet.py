@@ -550,14 +550,11 @@ class PoseHigherResolutionNet(nn.Module):
 
             need_init_state_dict = {}
             for name, m in pretrained_state_dict.items():
-                if name.split('.')[0] in self.pretrained_layers \
-                   or self.pretrained_layers[0] is '*':
+                if name.split('.')[0] in self.pretrained_layers or self.pretrained_layers[0] is '*':
                     if name in parameters_names or name in buffers_names:
-                        if verbose:
-                            logger.info(
-                                '=> init {} from {}'.format(name, pretrained)
-                            )
-                        need_init_state_dict[name] = m
+                        if 'final_layers' not in name and 'deconv_layers' not in name:
+                            if verbose: logger.info('=> init {} from {}'.format(name, pretrained))
+                            need_init_state_dict[name] = m
             self.load_state_dict(need_init_state_dict, strict=False)
 
 

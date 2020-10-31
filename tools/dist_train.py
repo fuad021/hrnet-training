@@ -295,6 +295,7 @@ def main_worker(
                 cfg.MULTIPROCESSING_DISTRIBUTED
                 and args.rank == 0
         ):
+            pretrained_model = cfg.MODEL.PRETRAINED_MODEL
             logger.info('=> saving checkpoint to {}'.format(final_output_dir))
             save_checkpoint({
                 'epoch': epoch + 1,
@@ -303,7 +304,7 @@ def main_worker(
                 'best_state_dict': model.module.state_dict(),
                 'perf': perf_indicator,
                 'optimizer': optimizer.state_dict(),
-            }, best_model, final_output_dir)
+            }, best_model, final_output_dir, pretrained_model)
 
     final_model_state_file = os.path.join(
         final_output_dir, 'final_state{}.pth.tar'.format(gpu)
