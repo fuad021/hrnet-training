@@ -103,7 +103,7 @@ MODEL:
   PRETRAINED: 'models/pytorch/pose_coco/pose_higher_hrnet_w48_640.pth.tar'
   TAG_PER_JOINT: True
 TEST:
-  FLIP_TEST: True
+  FLIP_TEST: False
   IMAGES_PER_GPU: 1
   MODEL_FILE: '' 
   SCALE_FACTOR: [1]

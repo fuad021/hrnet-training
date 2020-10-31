@@ -115,7 +115,7 @@ class Params(object):
             ]
         else:
             self.joint_order = [
-                i-1 for i in [1, 2, 3, 4, 5, 6, 7, 12, 13, 8, 9, 10, 11, 14, 15, 16, 17]
+                i-1 for i in [1, 2, 3, 4, 5, 6, 7, 12, 13, 8, 9, 10, 11, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
             ]
 
 
@@ -162,7 +162,7 @@ class HeatmapParser(object):
         )
 
         x = ind % w
-        y = (ind / w).long()
+        y = (ind // w).long()
 
         ind_k = torch.stack((x, y), dim=3)
 
