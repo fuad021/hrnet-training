@@ -53,6 +53,7 @@ _C.MODEL.NUM_JOINTS = 17
 _C.MODEL.TAG_PER_JOINT = True
 _C.MODEL.EXTRA = CN(new_allowed=True)
 _C.MODEL.SYNC_BN = False
+_C.MODEL.PRETRAINED_MODEL = 'hrnet_imagenet'
 
 _C.LOSS = CN()
 _C.LOSS.NUM_STAGES = 1

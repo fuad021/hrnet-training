@@ -101,7 +101,7 @@ MODEL:
   NAME: pose_higher_hrnet
   NUM_JOINTS: 23
   PRETRAINED: 'models/pytorch/pose_coco/pose_higher_hrnet_w48_640.pth.tar'
-  PRETRAINED_MODEL: hrnet_pose_17
+  PRETRAINED_MODEL: hrnet_pose
   TAG_PER_JOINT: True
 TEST:
   FLIP_TEST: False

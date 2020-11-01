@@ -91,14 +91,12 @@ def get_optimizer(cfg, model):
     return optimizer
 
 
-def save_checkpoint(states, is_best, output_dir, pretrained_model,
-                    filename='checkpoint.pth.tar'):
+def save_checkpoint(states, is_best, output_dir, pretrained_model, filename='checkpoint.pth.tar'):
     torch.save(states, os.path.join(output_dir, filename))
-
     if is_best and 'state_dict' in states and states["epoch"] % 5 == 0:
         torch.save(
             states['best_state_dict'],
-            os.path.join(output_dir, f'{pretrained_model}_{states["epoch"]}.pth.tar')
+            os.path.join(output_dir, f'model_{pretrained_model}_e{states["epoch"]}.pth.tar')
         )
 
 def get_model_summary(model, *input_tensors, item_length=26, verbose=True):

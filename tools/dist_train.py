@@ -296,6 +296,7 @@ def main_worker(
                 and args.rank == 0
         ):
             pretrained_model = cfg.MODEL.PRETRAINED_MODEL
+            logger.info(f'pretrained_model :: {pretrained_model}')
             logger.info('=> saving checkpoint to {}'.format(final_output_dir))
             save_checkpoint({
                 'epoch': epoch + 1,
