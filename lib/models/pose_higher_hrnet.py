@@ -547,8 +547,9 @@ class PoseHigherResolutionNet(nn.Module):
         if os.path.isfile(pretrained):
             pretrained_state_dict = torch.load(pretrained)
             logger.info('=> loading pretrained model {}'.format(pretrained))
-
             need_init_state_dict = {}
+            # training w32
+            '''
             for name, m in pretrained_state_dict.items():
                 if name.split('.')[0] in self.pretrained_layers or self.pretrained_layers[0] is '*':
                     if name in parameters_names or name in buffers_names:
@@ -556,7 +557,18 @@ class PoseHigherResolutionNet(nn.Module):
                             if verbose: logger.info('=> init {} from {}'.format(name, pretrained))
                             need_init_state_dict[name] = m
             self.load_state_dict(need_init_state_dict, strict=False)
-
+            '''
+            # training w48            
+            for name, m in pretrained_state_dict.items():
+                name = name[2:]
+                if 'final_layers' in name or 'deconv_layers' in name:
+                    continue
+                if name.split('.')[0] in self.pretrained_layers or self.pretrained_layers[0] is '*':
+                    if name in parameters_names or name in buffers_names:
+                        if verbose:
+                            logger.info('=> init {} from {}'.format(name, pretrained))
+                    need_init_state_dict[name] = m
+            self.load_state_dict(need_init_state_dict, strict=False)
 
 def get_pose_net(cfg, is_train, **kwargs):
     model = PoseHigherResolutionNet(cfg, **kwargs)
